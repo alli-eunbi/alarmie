@@ -1,0 +1,25 @@
+name: Node CI
+on:  
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+    
+jobs: ## job 들을 명시
+  build: ## job id
+    runs-on: ubuntu-latest ## 해당 job의 구동 환경을 정의
+    strategy:
+      matrix:
+        node-version: [16.x]
+    steps:
+      - uses: actions/checkout@v1
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: Npm Install, build and test
+        run: |
+          yarn build
+          yarn test
+        # env:
+        #   CI: true
