@@ -2,7 +2,7 @@ import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { User } from './user/users.entity';
+import { User } from './users/users.entity';
 
 @Module({
   imports: [
@@ -12,7 +12,7 @@ import { User } from './user/users.entity';
       port: 3306,
       username: 'root',
       password: 'root',
-      database: 'test',
+      database: 'example',
       entities: [User],
       synchronize: true,
     }),
