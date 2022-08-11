@@ -21,5 +21,5 @@ jobs: ## job 들을 명시
         run: |
           yarn build
           yarn test
-        # env:
-        #   CI: true
+        env:
+          CI: true
