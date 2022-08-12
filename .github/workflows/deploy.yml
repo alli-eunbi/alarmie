@@ -18,7 +18,16 @@ jobs: ## job 들을 명시
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
+      - name: Cache node modules
+        uses: actions/cache@v2
+        id: cache
+        with:
+          # node_modules라는 폴더를 검사하여
+          path: node_modules
+          # 아래 키값으로 cache가 돼있는지 확인합니다.
+          key: npm-packages-${{ hashFiles('**/package-lock.json') }}
       - name: Npm Install, build and test
+        if: steps.cache.outputs.cache-hit != 'true'
         run: |
           yarn install
           yarn build
