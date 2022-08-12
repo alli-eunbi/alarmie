@@ -41,7 +41,7 @@ jobs: ## job 들을 명시
       - name: Install Plugin and Deploy
         uses: serverless/github-action@v3.1
         with:
-           args: -c "cd ../.. && serverless plugin install --name <plugin-name> && serverless deploy"
+           args: -c "cd ./alarmie && serverless plugin install --name <plugin-name> && serverless deploy"
            entrypoint: /bin/sh
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
