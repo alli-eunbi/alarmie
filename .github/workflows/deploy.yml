@@ -34,8 +34,8 @@ jobs: ## job 들을 명시
         matrix:
           node-version: [16.x]
     steps:
-    - name: Install Plugin and Deploy
     - uses: serverless/github-action@v3.1
+    - name: Install Plugin and Deploy
       with:
         args: -c "serverless plugin install --name <plugin-name> && serverless deploy"
         entrypoint: /bin/sh
