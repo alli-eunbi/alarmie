@@ -22,7 +22,7 @@ functions:
     events:
       - http:
           method: any
-          path: /
+          path: /{any+}
 
 custom:
   enable_optimize:
