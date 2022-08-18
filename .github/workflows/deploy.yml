@@ -86,9 +86,8 @@ jobs: ## job 들을 명시
           #   CI: true
       - name: Install Plugin and Deploy
         uses: serverless/github-action@v3.1
-        run: |
-          sls remove
-          sls deploy
+        with:
+          args: remove && deploy
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
