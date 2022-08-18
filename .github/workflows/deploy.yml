@@ -68,7 +68,7 @@ jobs: ## job 들을 명시
         with:
           node-version: 16.x
       - name: Check env
-        run: cat .env
+        run: find / -name .env
       - name: Cache node modules
         uses: actions/cache@v2
         id: cache
