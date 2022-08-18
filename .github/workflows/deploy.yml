@@ -50,6 +50,13 @@ jobs: ## job 들을 명시
     runs-on: ubuntu-latest ## 해당 job의 구동 환경을 정의
     steps:
       - uses: actions/checkout@v1
+      - name: Generate Environment Variables File for Production
+        run: |
+          echo DATABASE_HOST=${{ secrets.DATABASE_HOST }}    >> .env
+          echo DATABASE_PORT=${{ secrets.DATABASE_PORT }}    >> .env
+          echo DATABASE_USERNAME=${{ secrets.DATABASE_USERNAME }}    >> .env
+          echo DATABADATABASE_PASSWORDSE_HOST=${{ secrets.DATABADATABASE_PASSWORDSE_HOST }}    >> .env
+          echo DATABASE_DATABASE_NAME=${{ secrets.DATABASE_DATABASE_NAME }}    >> .env
       - name: Use Node.js
         uses: actions/setup-node@v1
         with:
@@ -63,13 +70,6 @@ jobs: ## job 들을 명시
           # 아래 키값으로 cache가 돼있는지 확인합니다.
           key: npm-packages-${{ hashFiles('**/package-lock.json') }}
       # Github Repository Secrets를 통해 환경 변수 파일을 생성합니다.
-      - name: Generate Environment Variables File for Production
-        run: |
-          echo DATABASE_HOST=${{ secrets.DATABASE_HOST }}    >> .env
-          echo DATABASE_PORT=${{ secrets.DATABASE_PORT }}    >> .env
-          echo DATABASE_USERNAME=${{ secrets.DATABASE_USERNAME }}    >> .env
-          echo DATABADATABASE_PASSWORDSE_HOST=${{ secrets.DATABADATABASE_PASSWORDSE_HOST }}    >> .env
-          echo DATABASE_DATABASE_NAME=${{ secrets.DATABASE_DATABASE_NAME }}    >> .env
       - name: Npm Install, build and test
         if: steps.cache.outputs.cache-hit != 'true'
         run: |

@@ -16,6 +16,7 @@ dotenv.config();
       database: process.env.DATABASE_DATABASE_NAME,
       entities: [],
       synchronize: true,
+      keepConnectionAlive: true,
     }),
   ],
   controllers: [AppController],
