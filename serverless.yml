@@ -8,12 +8,22 @@ plugins:
   - serverless-plugin-cloudwatch-dashboard
   - serverless-deployment-bucket
 
+useDotenv: true
+
 provider:
   name: aws
   runtime: nodejs16.x
   region: ap-northeast-2
   deploymentBucket:
     name: alarmie-dev
+  vpc:
+    securityGroupIds:
+      - ${env:SECURITY_GROUP_ID}
+    subnetIds:
+      - ${env:SUBNET_ID_1}
+      - ${env:SUBNET_ID_2}
+      - ${env:SUBNET_ID_3}
+      - ${env:SUBNET_ID_4}
   
 
 functions:
@@ -23,6 +33,14 @@ functions:
       - http:
           method: any
           path: /
+    vpc:
+      securityGroupIds:
+        - ${env:SECURITY_GROUP_ID}
+      subnetIds:
+        - ${env:SUBNET_ID_1}
+        - ${env:SUBNET_ID_2}
+        - ${env:SUBNET_ID_3}
+        - ${env:SUBNET_ID_4}
 
 custom:
   enable_optimize:
