@@ -86,8 +86,7 @@ jobs: ## job 들을 명시
           #   CI: true
       - name: Install Plugin and Deploy
         uses: serverless/github-action@v3.1
-        with:
-          run: |
+        run: |
           sls remove
           sls deploy
         env:
