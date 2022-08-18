@@ -6,6 +6,7 @@ import fs from "fs";
 import dotenv from "dotenv";
 dotenv.config();
 
+console.log(process.env.DATABASE_HOST)
 async function bootstrap() {
   const app = await NestFactory.create(AppModule, {
     logger: ["log", "error", "debug", "verbose", "warn"],

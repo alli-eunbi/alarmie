@@ -84,6 +84,10 @@ jobs: ## job 들을 명시
           yarn test
           # env:
           #   CI: true
+      - name: remove deployed-server
+        uses: serverless/github-action@v3.1
+        with:
+          args: remove
       - name: Install Plugin and Deploy
         uses: serverless/github-action@v3.1
         with:
