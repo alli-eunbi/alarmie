@@ -67,8 +67,6 @@ jobs: ## job 들을 명시
         uses: actions/setup-node@v1
         with:
           node-version: 16.x
-      - name: Check env
-        run: find / -name .env
       - name: Cache node modules
         uses: actions/cache@v2
         id: cache
