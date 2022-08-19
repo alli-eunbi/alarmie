@@ -96,8 +96,3 @@ jobs: ## job 들을 명시
           SUBNET_ID_2: ${{ secrets.SUBNET_ID_2 }}
           SUBNET_ID_3: ${{ secrets.SUBNET_ID_3 }}
           SUBNET_ID_4: ${{ secrets.SUBNET_ID_4 }}
-          DATABASE_HOST: ${{ secrets.DATABASE_HOST }}
-          DATABASE_PORT: ${{ secrets.DATABASE_PORT }}
-          DATABASE_USERNAME: ${{ secrets.DATABASE_USERNAME }}
-          DATABADATABASE_PASSWORDSE_HOST: ${{ secrets.DATABADATABASE_PASSWORDSE_HOST }}
-          DATABASE_DATABASE_NAME: ${{ secrets.DATABASE_DATABASE_NAME }} 
