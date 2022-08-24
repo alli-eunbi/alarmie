@@ -2,7 +2,7 @@ import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { User } from './users/users.entity';
+import { EventsGateway } from './socket/event.gateway';
 
 @Module({
   imports: [
@@ -11,14 +11,14 @@ import { User } from './users/users.entity';
       host: 'localhost',
       port: 3306,
       username: 'root',
-      password: 'root',
+      password: '1234',
       database: 'example',
-      entities: [User],
+      entities: [],
       synchronize: true,
     }),
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [AppService, EventsGateway],
 
 })
 export class AppModule {}

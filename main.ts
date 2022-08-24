@@ -1,16 +1,21 @@
 import { NestFactory } from "@nestjs/core";
 import { AppModule } from "./src/app.module";
 import { DocumentBuilder, SwaggerModule } from "@nestjs/swagger";
+import { NestExpressApplication } from '@nestjs/platform-express';
+import { WsAdapter } from "@nestjs/platform-ws"
+import { join } from 'path';
 import path from "path";
-import fs from "fs";
+import fs from "fs"; 
 import dotenv from "dotenv";
+
 dotenv.config();
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule, {
+  const app = await NestFactory.create<NestExpressApplication>(AppModule, {
     logger: ["log", "error", "debug", "verbose", "warn"],
   });
-
+  // app.useWebSocketAdapter(new WsAdapter(app));
+  // app.useStaticAssets(join(__dirname, '..', 'client'));
   app.enableCors();
 
   if (process.env.STAGE === "dev") {
