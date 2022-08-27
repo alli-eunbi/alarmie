@@ -14,8 +14,8 @@ async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule, {
     logger: ["log", "error", "debug", "verbose", "warn"],
   });
-  // app.useWebSocketAdapter(new WsAdapter(app));
-  // app.useStaticAssets(join(__dirname, '..', 'client'));
+  app.useWebSocketAdapter(new WsAdapter(app));
+  app.useStaticAssets(join(__dirname, '..', 'client'));
   app.enableCors();
 
   if (process.env.STAGE === "dev") {

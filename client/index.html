@@ -18,31 +18,45 @@
   <body>
     <ul id="messages"></ul>
     <form id="form" action="">
-      <input id="input" autocomplete="off" /><button>Send</button>
+      <input id="input" autocomplete="off" />
+      <button id="button">Send</button>
     </form>
-    <script src="https://cdn.socket.io/socket.io-2.3.1.js"></script>
+    <!-- <script src="https://cdn.socket.io/socket.io-2.3.1.js"></script> -->
 
     <script>
-      var socket = io('http://localhost:3000');
+      const socket = new WebSocket("ws://localhost:8080/chat")
+
+      socket.onopen = (message)=>{
+        console.log("opened")
+      }
+
+      socket.onmessage = (message)=>{
+        console.log(message)
+      }
+
+      socket.onclose =(message)=>{
+        console.log("close")
+      }
+
+      socket.onerror=(message)=>{
+        console.log("error",message)
+      }
 
       var messages = document.getElementById('messages');
       var form = document.getElementById('form');
       var input = document.getElementById('input');
 
-      form.addEventListener('submit', function(e) {
-        e.preventDefault();
-        if (input.value) {
-          socket.emit('chat message', input.value);
-          input.value = '';
-        }
-      });
+    
 
-      socket.on('message', function(msg) {
-        var li = document.createElement('li');
-        li.appendChild(document.createTextNode(msg));
-        messages.appendChild(item);
-        window.scrollTo(0, document.body.scrollHeight);
-      });
+      form.onsubmit = (e)=>{
+        e.preventDefault()
+        const text = input.value
+        console.log("submit",text)
+        socket.send(JSON.stringify({event:"events",data:"asdf"}))
+
+      }
+
+
 
     </script>
   </body>

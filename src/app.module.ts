@@ -3,6 +3,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { EventsGateway } from './socket/event.gateway';
+import { EventsModule } from './socket/event.module';
 
 @Module({
   imports: [
@@ -15,10 +16,10 @@ import { EventsGateway } from './socket/event.gateway';
       database: 'example',
       entities: [],
       synchronize: true,
-    }),
+    }),EventsModule
   ],
   controllers: [AppController],
-  providers: [AppService, EventsGateway],
+  providers: [AppService, EventsModule],
 
 })
 export class AppModule {}

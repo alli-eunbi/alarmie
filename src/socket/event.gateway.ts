@@ -4,16 +4,21 @@ import {
   SubscribeMessage,
   WebSocketGateway,
   WebSocketServer,
+  WsResponse,
 } from '@nestjs/websockets';
 import { Server } from 'socket.io';
 
-@WebSocketGateway()
+@WebSocketGateway(8080, { cors: true, path:"/chat"})
 export class EventsGateway{
   @WebSocketServer()
   server: Server;
-
-    @SubscribeMessage('message')
-    handleEvent(@MessageBody() data: string): void {
-      this.server.emit('message', data)
-  }
+ 
+ 
+   @SubscribeMessage("events")
+   handleEvent(client, data: unknown): WsResponse<unknown> {
+    console.log(data)
+    const event = "events";
+    return {event, data};
+   }
+   
 }
