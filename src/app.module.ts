@@ -2,8 +2,8 @@ import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { EventsGateway } from './socket/event.gateway';
 import { EventsModule } from './socket/event.module';
+import { EventsController } from './socket/event.controller';
 
 @Module({
   imports: [
@@ -16,10 +16,11 @@ import { EventsModule } from './socket/event.module';
       database: 'example',
       entities: [],
       synchronize: true,
-    }),EventsModule
+    }),
+    EventsModule
   ],
   controllers: [AppController],
-  providers: [AppService, EventsModule],
+  providers: [AppService],
 
 })
 export class AppModule {}

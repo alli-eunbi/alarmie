@@ -16,6 +16,9 @@ async function bootstrap() {
   });
   app.useWebSocketAdapter(new WsAdapter(app));
   app.useStaticAssets(join(__dirname, '..', 'client'));
+  app.setBaseViewsDir(join(__dirname, '..', 'client/view'));
+  app.setViewEngine('hbs');
+
   app.enableCors();
 
   if (process.env.STAGE === "dev") {
